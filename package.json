@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=dev nodemon ./app.js --exec babel-node",
     "prd": "cross-env NODE_ENV=production nodemon ./app.js --exec babel-node",
+    "start": "babel-node ./app.js",
+    "build": "babel ./app.js --out-dir dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
