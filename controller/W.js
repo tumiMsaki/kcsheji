@@ -1,10 +1,10 @@
 import * as W from '../model/W'
 
 exports.W = async ctx => {
-  let {user_uuid} = ctx.request.body
-  await W.W(user_uuid)
+  let {user_uuid, punch} = ctx.request.body
+  await W.W([user_uuid, punch])
     .then(result => {
-      if (result.length) {
+      if (result.insertId) {
         ctx.body = {
           code: 1,
           msg: 'ok'

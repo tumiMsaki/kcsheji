@@ -1,10 +1,11 @@
 import mysql from 'mysql'
 
 const pool  = mysql.createPool({
-  host     : 'localhost:3306',
-  user     : 'zhaoyangsb',
-  password : 'zhaoyangsb',
-  database : 'zhaoyangsb'
+  host     : 'localhost',
+  user     : 'root',
+  password : 'yym891230',
+  database : 'zhaoyangsb',
+  port     : 3306
 });
 
 let query = function(sql, value) {
@@ -27,17 +28,27 @@ let query = function(sql, value) {
   })
 }
 
-let users =
-    `create table if not exists uuid(
+let users_t =
+    `create table if not exists users_t(
      id INT NOT NULL AUTO_INCREMENT,
      user_uuid VARCHAR(100) NOT NULL,
+     temperature VARCHAR(100) NOT NULL,
      PRIMARY KEY ( id )
     );`
-  
+
+let users_m =
+    `create table if not exists users_m(
+      id INT NOT NULL AUTO_INCREMENT,
+      user_uuid VARCHAR(100) NOT NULL,
+      punch VARCHAR(100) NOT NULL,
+      PRIMARY KEY ( id )
+    );`
+
 let createTable = function(sql) {
   return query(sql, [])
 }
 
-createTable(users)
+createTable(users_m)
+createTable(users_t)
 
 module.exports = query

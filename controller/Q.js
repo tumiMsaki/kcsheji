@@ -1,28 +1,28 @@
 import * as Q from '../model/Q'
 
-// exports.Q = async ctx => {
-//   let {user_uuid} = ctx.request.body
-//   await Q.Q(user_uuid)
-//     .then(result => {
-//       if (result.length) {
-//         ctx.body = {
-//           code: 1,
-//           msg: 'ok'
-//         }
-//       } else {
-//         ctx.body = {
-//           code: 2,
-//           msg: 'fail'
-//         }
-//       }
-//     })
-//     .catch(err => {
-//       ctx.body = {
-//         code: 5,
-//         msg: err
-//       }
-//     })
-// }
+exports.Q = async ctx => {
+  let {user_uuid, temperature} = ctx.request.body
+  await Q.Q([user_uuid, temperature])
+    .then(result => {
+      if (result.insertId) {
+        ctx.body = {
+          code: 1,
+          msg: 'ok'
+        }
+      } else {
+        ctx.body = {
+          code: 2,
+          msg: 'fail'
+        }
+      }
+    })
+    .catch(err => {
+      ctx.body = {
+        code: 5,
+        msg: err
+      }
+    })
+}
 
 // exports.Q = async ctx => {
 //   let postData = await parsePostData(ctx);
@@ -58,10 +58,10 @@ import * as Q from '../model/Q'
 //   return queryData
 // }
 
-exports.Q = async ctx => {
-  let postData = ctx.request.body;
-  ctx.response.body = {
-    code: 1,
-    msg: postData
-  };
-}
+// exports.Q = async ctx => {
+//   let postData = ctx.request.body;
+//   ctx.response.body = {
+//     code: 1,
+//     msg: postData
+//   };
+// }
